@@ -1,0 +1,29 @@
+version: "3"
+
+networks:
+  api-network :
+    external: true
+
+services:
+  serverapi:
+    image: serverapi:latest
+    ports: 
+        - 8080:8080
+    networks:
+      - api-network
+    volumes:
+      - mysql-volume:/var/lib
+    tty: true
+
+  mysql:
+    image: mysql:8.0
+    environment: 
+      MYSQL_ROOT_PASSWORD: java_test
+    networks: 
+      - api-network
+    volumes: 
+      - mysql-volume:/var/lib/mysql-data
+    tty: true
+
+volumes:
+  mysql-volume:
