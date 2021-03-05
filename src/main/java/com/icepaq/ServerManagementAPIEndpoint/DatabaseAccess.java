@@ -42,7 +42,7 @@ public class DatabaseAccess {
 	public boolean processExists(String process_id) throws SQLException {
 		
 		Connection conn = DriverManager.getConnection(codes.host_name, codes.db_username, codes.db_password);
-		String query = "SELECT * FROM servermanager.processes WHERE process_id = ? AND active = 0";
+		String query = "SELECT * FROM servermanager.processes WHERE process_id = ? AND active = 1";
 		PreparedStatement stmt = conn.prepareStatement(query);
 		ResultSet rs = null;
 		
@@ -65,10 +65,10 @@ public class DatabaseAccess {
 		return false;
 	}
 	
-	public String removeProcess(String process_id) throws SQLException {
+	public String terminateProcess(String process_id) throws SQLException {
 		
 		Connection conn = DriverManager.getConnection(codes.host_name, codes.db_username, codes.db_password);
-		String query = "DELETE FROM servermanager.processes WHERE process_id = ?";
+		String query = "UPDATE servermanager.processes set active = 0 WHERE process_id = ? ";
 		PreparedStatement stmt = conn.prepareStatement(query);
 		
 		stmt.setString(1, process_id);
@@ -85,7 +85,7 @@ public class DatabaseAccess {
 	public String addProcess(String process_id) throws SQLException {
 		
 		Connection conn = DriverManager.getConnection(codes.host_name, codes.db_username, codes.db_password);
-		String query = "INSERT INTO servermanager.processes VALUES(?, NOW())";
+		String query = "INSERT INTO servermanager.processes VALUES(?, NOW(), 1)";
 		PreparedStatement stmt = conn.prepareStatement(query);
 		
 		stmt.setString(1, process_id);

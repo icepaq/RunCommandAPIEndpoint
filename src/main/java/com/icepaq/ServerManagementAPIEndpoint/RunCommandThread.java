@@ -23,7 +23,7 @@ public class RunCommandThread {
 	}
 
 	//Thread runs inside of this method
-	public void run() throws SQLException {
+	public void run() throws SQLException{
 		
 		a.addProcess(command_id); // Adding process to database. 
 		
@@ -45,14 +45,6 @@ public class RunCommandThread {
 
 		String line = null;
 		
-		// Creating a command id
-		SecureRandom sr = new SecureRandom();
-		byte bytes[] = new byte[20];
-		sr.nextBytes(bytes);
-		
-		command_id = bytes.toString();
-		System.out.println(command_id);
-		
 		a.addProcess(command_id);
 		
 		try {
@@ -70,14 +62,13 @@ public class RunCommandThread {
 					break;
 				}
 			}
-			a.removeProcess(command_id);
 		} catch (IOException e) {
 			System.out.println(e);
 		}
 	}
 
 	public void start() {
-		//r = (new Thread(new RunCommandThread(commands, command_id)));
+		//Thread r = (new Thread(new RunCommandThread(commands, command_id)));
 		//r.start();
 	}
 

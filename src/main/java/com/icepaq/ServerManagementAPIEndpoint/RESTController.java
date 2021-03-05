@@ -16,6 +16,7 @@ public class RESTController {
 	
 	RunCommandThread rt;
 	private final AtomicLong counter = new AtomicLong();
+
 	
 	@GetMapping("/updateAPIKey")
 	public UpdateKey updatekey(@RequestParam(value = "api_key") String api_key, 
@@ -35,9 +36,9 @@ public class RESTController {
 	//The command is recognized as an Array List to make the process simple in the first line of RunCommandThread.run()
 	@CrossOrigin
 	@GetMapping("/runcommand")
-	public RunCommand echo(@RequestParam(value = "api_key", defaultValue = "null") String api_key, @RequestParam(value = "commands") ArrayList<String> commands, @RequestParam(value = "command_id") String command_id) throws SQLException, NoSuchAlgorithmException {
+	public RunCommand echo(@RequestParam(value = "api_key", defaultValue = "null") String api_key, @RequestParam(value = "commands") ArrayList<String> commands) throws SQLException, NoSuchAlgorithmException {
 		
-		RunCommand rc = new RunCommand(api_key, commands, command_id);
+		RunCommand rc = new RunCommand(api_key, commands);
 		rt = rc.thread();
 		return rc;
 	}
