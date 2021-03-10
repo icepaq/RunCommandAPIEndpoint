@@ -36,6 +36,15 @@ public class DatabaseAccess {
 			System.out.println(e);
 		}
 		
+		if(conn != null) {
+			conn.close();
+		}
+		if(stmt != null) {
+			stmt.close();
+		}
+		if(stmt2 != null) {
+			stmt.close();
+		}
 		return "";
 	}
 	
@@ -60,6 +69,16 @@ public class DatabaseAccess {
 			System.out.println(e);
 		}
 		
+		if(conn != null) {
+			conn.close();
+		}
+		if(stmt != null) {
+			stmt.close();
+		}
+		if(rs != null) {
+			rs.close();
+		}
+		
 		if(count > 0) return true;
 		
 		return false;
@@ -79,6 +98,13 @@ public class DatabaseAccess {
 			System.out.println(e);
 		}
 		
+		if(conn != null) {
+			conn.close();
+		}
+		if(stmt != null) {
+			stmt.close();
+		}
+		
 		return "";
 	}
 	
@@ -94,6 +120,13 @@ public class DatabaseAccess {
 		}
 		catch(SQLException e) {
 			System.out.println(e);
+		}
+		
+		if(conn != null) {
+			conn.close();
+		}
+		if(stmt != null) {
+			stmt.close();
 		}
 		
 		return "";
@@ -192,9 +225,16 @@ public class DatabaseAccess {
 		}
 		catch(SQLException e) {
 			System.out.println(e);
-		} finally {
+		}
+		
+		if(conn != null) {
 			conn.close();
+		}
+		if(stmt != null) {
 			stmt.close();
+		}
+		if(rs != null) {
+			rs.close();
 		}
 		
 		return result;
@@ -214,10 +254,15 @@ public class DatabaseAccess {
 		}
 		catch(SQLException e) {
 			System.out.println(e);
-		} finally {
+		}
+		
+		if(conn != null) {
 			conn.close();
+		}
+		if(stmt != null) {
 			stmt.close();
 		}
+		
 		return "";
 	}
 	
