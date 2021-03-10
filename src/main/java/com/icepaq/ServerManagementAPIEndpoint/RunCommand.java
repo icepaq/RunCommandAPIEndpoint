@@ -33,7 +33,7 @@ public class RunCommand {
 			
 			pid = generatePID();
 			rct = new RunCommandThread(commands, pid);
-			rct.run();
+			rct.start();
 		}
 	}
 	

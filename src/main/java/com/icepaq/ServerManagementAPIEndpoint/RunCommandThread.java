@@ -8,7 +8,7 @@ import java.security.SecureRandom;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RunCommandThread {
+public class RunCommandThread extends Thread{
 
 	Codes codes = new Codes();
 	ArrayList<String> commands;
@@ -23,9 +23,14 @@ public class RunCommandThread {
 	}
 
 	//Thread runs inside of this method
-	public void run() throws SQLException{
+	public void run() {
 		
-		a.addProcess(command_id); // Adding process to database. 
+		try {
+			a.addProcess(command_id); // Adding process to database. 
+		}
+		catch(SQLException e) {
+			System.out.println(e);
+		}
 		
 		//Created a process. commands is passed from RESTController.runcommands
 		ProcessBuilder builder = new ProcessBuilder(commands); 
@@ -45,8 +50,6 @@ public class RunCommandThread {
 
 		String line = null;
 		
-		a.addProcess(command_id);
-		
 		try {
 			while ((line = reader.readLine()) != null) {
 				System.out.println(line);
@@ -58,9 +61,14 @@ public class RunCommandThread {
 				}
 				
 				// If the process id is not found, this means that the process has been removed manually.	
-				if (!a.processExists(command_id)) {
-					break;
+				try {
+					if (!a.processExists(command_id)) {
+						break;
+					}
+				} catch (SQLException e1) {
+					System.out.println(e1);
 				}
+				
 			}
 		} catch (IOException e) {
 			System.out.println(e);
@@ -68,8 +76,8 @@ public class RunCommandThread {
 	}
 
 	public void start() {
-		//Thread r = (new Thread(new RunCommandThread(commands, command_id)));
-		//r.start();
+		Thread r = (new Thread(new RunCommandThread(commands, command_id)));
+		r.start();
 	}
 
 }
