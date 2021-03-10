@@ -16,6 +16,40 @@ public class DatabaseAccess {
 	
 	Codes codes = new Codes();
 	
+	public ArrayList<String> getActiveProcesses() throws SQLException {
+
+		Connection conn = DriverManager.getConnection(codes.host_name, codes.db_username, codes.db_password);
+		
+		String query = "SELECT * from servermanager.processes WHERE active = 1";
+		ArrayList<String> results = new ArrayList<String>();
+		
+		PreparedStatement stmt = conn.prepareStatement(query);
+		ResultSet rs = null;
+		
+		try {
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				results.add(rs.getString("process_id"));
+			}
+		}
+		catch(SQLException e) {
+			System.out.println(e);
+		}
+		
+		if(conn != null) {
+			conn.close();
+		}
+		if(stmt != null) {
+			stmt.close();
+		}
+		if(rs != null) {
+			rs.close();
+		}
+		
+		return results;
+	}
+	
 	public String updateAPIKey(String new_key) throws SQLException, NoSuchAlgorithmException {
 		
 		Connection conn = DriverManager.getConnection(codes.host_name, codes.db_username, codes.db_password);

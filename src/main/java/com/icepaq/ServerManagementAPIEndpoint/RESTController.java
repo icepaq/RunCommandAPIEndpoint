@@ -17,6 +17,11 @@ public class RESTController {
 	RunCommandThread rt;
 	private final AtomicLong counter = new AtomicLong();
 
+	@GetMapping("/activeProcesses")
+	public ActiveProcesses activeProcesses(@RequestParam(value = "api_key") String api_key) throws NoSuchAlgorithmException, SQLException {
+		
+		return new ActiveProcesses(api_key);
+	}
 	
 	@GetMapping("/updateAPIKey")
 	public UpdateKey updatekey(@RequestParam(value = "api_key") String api_key, 
