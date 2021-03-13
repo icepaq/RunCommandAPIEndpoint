@@ -12,7 +12,6 @@ public class ActiveProcesses {
 	private final String status;
 	private final Map<String, ArrayList<String>> data = new HashMap<>();
 	
-	
 	public ActiveProcesses(String api_key) throws NoSuchAlgorithmException, SQLException {
 		System.out.println("Active Processes");
 		ArrayList<String> content = dba.authenticate(api_key); //Authenticates the API key
@@ -27,7 +26,7 @@ public class ActiveProcesses {
 		else {
 			this.status = "success";
 			
-			ArrayList<String> al = dba.getActiveProcesses();
+			ArrayList<String> al = dba.getProcesses(1);
 			data.put("Processes", al);
 		}
 		

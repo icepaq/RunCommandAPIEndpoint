@@ -16,7 +16,7 @@ public class DatabaseAccess {
 	
 	Codes codes = new Codes();
 	
-	public ArrayList<String> getActiveProcesses() throws SQLException {
+	public ArrayList<String> getProcesses(int active) throws SQLException {
 
 		Connection conn = DriverManager.getConnection(codes.host_name, codes.db_username, codes.db_password);
 		
@@ -24,6 +24,7 @@ public class DatabaseAccess {
 		ArrayList<String> results = new ArrayList<String>();
 		
 		PreparedStatement stmt = conn.prepareStatement(query);
+		stmt.setInt(1, active);
 		ResultSet rs = null;
 		
 		try {
