@@ -18,7 +18,7 @@ public class RESTController {
 	private final AtomicLong counter = new AtomicLong();
 
 	@GetMapping("/finishedProcesses")
-	public FinishedProcesses finishedProcesses(String api_key) throws SQLException, NoSuchAlgorithmException {
+	public FinishedProcesses finishedProcesses(@RequestParam(value = "api_key") String api_key) throws SQLException, NoSuchAlgorithmException {
 		
 		return new FinishedProcesses(api_key);
 	}
