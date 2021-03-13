@@ -16,6 +16,12 @@ public class RESTController {
 	
 	RunCommandThread rt;
 	private final AtomicLong counter = new AtomicLong();
+	
+	@GetMapping("/terminateProcess")
+	public TerminateProcess terminateProcess (@RequestParam(value = "api_key") String api_key, @RequestParam(value = "pid") String pid) throws NoSuchAlgorithmException, SQLException {
+		
+		return new TerminateProcess(api_key, pid);
+	}
 
 	@GetMapping("/finishedProcesses")
 	public FinishedProcesses finishedProcesses(@RequestParam(value = "api_key") String api_key) throws SQLException, NoSuchAlgorithmException {

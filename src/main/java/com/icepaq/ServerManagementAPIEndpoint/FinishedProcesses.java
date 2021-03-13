@@ -35,4 +35,12 @@ public class FinishedProcesses {
 			this.result.put("Processes", al);
 		}
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public Map<String, ArrayList<String>> getResult() {
+		return result;
+	}
 }
