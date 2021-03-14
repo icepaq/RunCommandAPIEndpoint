@@ -44,6 +44,7 @@ public class RunCommand {
 		sr.nextBytes(bytes);
 		
 		String command_id = bytes.toString();
+		command_id = command_id.substring(1); 	
 		System.out.println(command_id);
 		
 		return command_id;
