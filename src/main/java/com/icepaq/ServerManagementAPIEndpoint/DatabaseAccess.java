@@ -233,11 +233,21 @@ public class DatabaseAccess {
 	public ArrayList<Map<String, String>> getCommands(String command_id) throws SQLException {
 		
 		Connection conn = DriverManager.getConnection(codes.host_name, codes.db_username, codes.db_password);
-		String query = "SELECT * FROM servermanager.runcommands ORDER BY id ASC";
+		PreparedStatement stmt = null;
+		String query;
+		
+		if (command_id.equals("null")) {
+			query = "SELECT * FROM servermanager.runcommands ORDER BY id ASC";
+			stmt = conn.prepareStatement(query);
+		}
+		else {
+			query = "SELECT * FROM servermanager.runcommands WHERE command_id = ? ORDER BY id ASC";
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, command_id);
+		}
+		
 		ResultSet rs = null;
 		
-		PreparedStatement stmt = conn.prepareStatement(query);
-		//stmt.setString(1, command_id);
 		
 		ArrayList<Map<String, String>> result = new ArrayList<>();
 		try {

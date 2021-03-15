@@ -63,9 +63,9 @@ public class RESTController {
 	//Returns all entries in the database
 	@CrossOrigin
 	@GetMapping("/getouput")
-	public GetOutput getOutput(@RequestParam(value = "api_key", defaultValue = "null") String api_key) throws SQLException {
+	public GetOutput getOutput(@RequestParam(value = "api_key", defaultValue = "null") String api_key, @RequestParam(value = "pid", defaultValue = "null") String pid) throws SQLException {
 		
-		return new GetOutput(api_key, "");
+		return new GetOutput(api_key, pid);
 	}
 	
 	//Runs an initial database setup
