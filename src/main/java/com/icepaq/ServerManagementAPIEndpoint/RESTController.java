@@ -62,7 +62,7 @@ public class RESTController {
 	
 	//Returns all entries in the database
 	@CrossOrigin
-	@GetMapping("/getouput")
+	@GetMapping("/getoutput")
 	public GetOutput getOutput(@RequestParam(value = "api_key", defaultValue = "null") String api_key, @RequestParam(value = "pid", defaultValue = "null") String pid) throws SQLException {
 		
 		return new GetOutput(api_key, pid);
