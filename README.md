@@ -1,4 +1,4 @@
-# RunCommandAPIEndpointt
+# RunCommandAPIEndpoint
 Be able to run commands on a server remotely through a REST API. Convienient for automation and managing several servers.
 
 ## Before Running
