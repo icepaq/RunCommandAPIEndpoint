@@ -3,6 +3,7 @@ Be able to run commands on a server remotely through a REST API. Convienient for
 
 ## Before Running
 - Set up a MySQL server which will store CLI output. Name the databse servermanager and run the commands: 
+
 `CREATE TABLE api_tokens(token VARCHAR(255))`
 
 `CREATE TABLE runncommands(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, date DATETIME, command TEXT)`
