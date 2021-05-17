@@ -2,7 +2,13 @@
 Be able to run commands on a server remotely through a REST API. Convienient for automation and managing several servers.
 
 ## Before Running
-- Set up a MySQL server which will store CLI output. Name the databse servermanager and run the commands: `CREATE TABLE api_tokens(token VARCHAR(255))` and `CREATE TABLE runncommands(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, date DATETIME, command TEXT)`
+- Set up a MySQL server which will store CLI output. Name the databse servermanager and run the commands: 
+`CREATE TABLE api_tokens(token VARCHAR(255))`
+
+`CREATE TABLE runncommands(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, date DATETIME, command TEXT)`
+
+`CREATE TABLE processes(process_id VARCHAR(120), date DATETIME, active BOOLEAN);`
+
 - Modify src/Codes.java and add the appropriate hostname, username and password.
 - Modify the application port by adding `application.port=<port>` in resources/application.properties
 
